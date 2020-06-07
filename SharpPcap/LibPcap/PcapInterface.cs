@@ -85,6 +85,7 @@ namespace SharpPcap.LibPcap
             Description = pcapIf.Description;
             Flags = pcapIf.Flags;
             Addresses = new List<PcapAddress>();
+            GatewayAddresses = new List<IPAddress>();
             Credentials = credentials;
 
             // attempt to populate the mac address, 
@@ -95,12 +96,10 @@ namespace SharpPcap.LibPcap
                 int gatewayAddressCount = ipProperties.GatewayAddresses.Count;
                 if (gatewayAddressCount != 0)
                 {
-                    List<IPAddress> gatewayAddresses = new List<IPAddress>();
                     foreach (GatewayIPAddressInformation gatewayInfo in ipProperties.GatewayAddresses)
                     {
-                        gatewayAddresses.Add(gatewayInfo.Address);
+                        GatewayAddresses.Add(gatewayInfo.Address);
                     }
-                    GatewayAddresses = gatewayAddresses;
                 }
                 MacAddress = networkInterface.GetPhysicalAddress();
                 FriendlyName = networkInterface.Name;
