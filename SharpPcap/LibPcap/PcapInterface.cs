@@ -101,7 +101,6 @@ namespace SharpPcap.LibPcap
                         GatewayAddresses.Add(gatewayInfo.Address);
                     }
                 }
-                MacAddress = networkInterface.GetPhysicalAddress();
                 FriendlyName = networkInterface.Name;
             }
 
